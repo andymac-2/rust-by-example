@@ -11,7 +11,8 @@ The `Option<T>` enum has two variants:
 ```rust,editable,ignore,mdbook-runnable
 // An integer division that doesn't `panic!`
 fn checked_division(dividend: i32, divisor: i32) -> Option<i32> {
-    if divisor == 0 {
+    // Check for division by zero, and integer overflow.
+    if divisor == 0 || (dividend == i32::min_value() && divisor == -1){
         // Failure is represented as the `None` variant
         None
     } else {
